@@ -35,8 +35,8 @@ The first 0.1.0 release published completely, but its latest-download verificati
 
 The website at photozeitgeist/selectivity.net uses the supplied Launch theme unchanged. It has the five documentation/contact pages, recorded browser playback, six posts and unique SVGs. Hugo 0.147.9 builds and 660 internal URL/asset checks pass, with one H1 per substantive page. An independent website and playback review found no mismatch against the code or released trace data. Node state checks exercised playback controls; SVGs were rasterized and inspected. Full browser rendering was unavailable locally. Site content commit: e16a3b6f60622f16e5630c7a1d1396d3b013a632.
 
-Selectivity was added as the twenty-ninth SoftDevStudio.com project with its own note and updated plan/feed coverage. Studio commit: e41015bc7a3866a4d1d8dc8254de8966ccc65752. Public selectivity.net still serves a parking redirect to /lander, so public hosting/DNS activation is not claimed. The repositories are ready.
+Selectivity was added as the twenty-ninth SoftDevStudio.com project with its own note and updated plan/feed coverage. Studio commit: e41015bc7a3866a4d1d8dc8254de8966ccc65752. The user connected selectivity.net. Public HTTPS verification passed: homepage and all seven images loaded, both recorded demo runs completed at 12 bytes (80 and 18 checks), and Quick Start and Download loaded. All five archive links plus SHA256SUMS match release asset names. Fixed Hugo smart punctuation altering the inline --version command on the download page.
 
 ## Next
 
-After the domain is pointed at the site's host, verify the homepage, /demo/, SVGs, feed and downloads on the public domain. Further engine features await the user's choice. Read this file first in either Claude or Codex; work on main and keep the existing template unchanged.
+Public site and recorded playback are live and verified. Further engine features await the user's choice. Read this file first in either Claude or Codex; work on main and keep the existing template unchanged.
