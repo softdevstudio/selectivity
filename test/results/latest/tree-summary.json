@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "original_bytes": 39,
+  "reduced_bytes": 12,
+  "original_files": 3,
+  "reduced_files": 2,
+  "predicate_executions": 18,
+  "candidate_checks": 18,
+  "unresolved_checks": 0,
+  "locally_minimal": true,
+  "scope": "files and per-file lines",
+  "duration_ms": 57,
+  "command": [
+    "/usr/bin/sh",
+    "-c",
+    "[ -f \"$1/a.txt\" ] \u0026\u0026 [ -f \"$1/nested/b.txt\" ] \u0026\u0026 grep -qx alpha \"$1/a.txt\" \u0026\u0026 grep -qx omega \"$1/nested/b.txt\"",
+    "check",
+    "{input}"
+  ],
+  "repeats": 1,
+  "timeout": "5s"
+}

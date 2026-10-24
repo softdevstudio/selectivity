@@ -1,0 +1,56 @@
+?   	github.com/softdevstudio/selectivity	[no test files]
+=== RUN   TestCLIFlags
+Selectivity 0.1.0
+Usage: selectivity --input PATH --out NEW_DIR [options] -- PROGRAM [ARGS containing {input}]
+Predicate exits: 0 interesting, 1 uninteresting, others unresolved. No shell is implied.
+  -input string
+    	input file or directory
+  -lines-in-files
+    	also reduce lines inside remaining directory files
+  -max-tests int
+    	maximum predicate executions for the run (default 10000)
+  -out string
+    	new output directory outside input (required)
+  -repeats int
+    	consecutive matching observations required (default 3)
+  -timeout duration
+    	timeout per predicate execution (default 5s)
+  -version
+    	print version
+Usage: selectivity --input PATH --out NEW_DIR [options] -- PROGRAM [ARGS containing {input}]
+Predicate exits: 0 interesting, 1 uninteresting, others unresolved. No shell is implied.
+  -input string
+    	input file or directory
+  -lines-in-files
+    	also reduce lines inside remaining directory files
+  -max-tests int
+    	maximum predicate executions for the run (default 10000)
+  -out string
+    	new output directory outside input (required)
+  -repeats int
+    	consecutive matching observations required (default 3)
+  -timeout duration
+    	timeout per predicate execution (default 5s)
+  -version
+    	print version
+flag provided but not defined: -unknown
+Usage: selectivity --input PATH --out NEW_DIR [options] -- PROGRAM [ARGS containing {input}]
+Predicate exits: 0 interesting, 1 uninteresting, others unresolved. No shell is implied.
+  -input string
+    	input file or directory
+  -lines-in-files
+    	also reduce lines inside remaining directory files
+  -max-tests int
+    	maximum predicate executions for the run (default 10000)
+  -out string
+    	new output directory outside input (required)
+  -repeats int
+    	consecutive matching observations required (default 3)
+  -timeout duration
+    	timeout per predicate execution (default 5s)
+  -version
+    	print version
+exec: "definitely-not-a-selectivity-program": executable file not found in $PATH
+--- PASS: TestCLIFlags (0.00s)
+PASS
+ok  	github.com/softdevstudio/selectivity/cmd/selectivity	1.015s
