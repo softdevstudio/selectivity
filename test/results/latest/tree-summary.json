@@ -9,7 +9,7 @@
   "unresolved_checks": 0,
   "locally_minimal": true,
   "scope": "files and per-file lines",
-  "duration_ms": 57,
+  "duration_ms": 47,
   "command": [
     "/usr/bin/sh",
     "-c",

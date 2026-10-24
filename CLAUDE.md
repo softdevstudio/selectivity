@@ -3,7 +3,7 @@
 ## Project facts
 
 Selectivity reduces an input while a user-supplied command confirms that the behavior of interest survives.
-Domain: selectivity.net. Code: softdevstudio/selectivity. Site repo has not been supplied. Language: Go. License: Apache 2.0.
+Domain: selectivity.net. Code: softdevstudio/selectivity. Site: photozeitgeist/selectivity.net. Language: Go. License: Apache 2.0.
 
 ## Low maintenance workflow
 
@@ -31,8 +31,8 @@ Build line reduction and directory reduction with an optional pass over each rem
 
 Independent review by a separate task found interrupted-check audit loss, umask-altered permissions and omitted directory hashes. Fixed these and added regression tests; the review reran race tests and found no remaining reducer correctness issue. A second review pass checked cancellation accounting and release logic. Release verification must still check published artifacts.
 
-Local vet, race tests and both CLI demos pass. The 20,000-line demo reduces 408,866 bytes to the two trigger lines (12 bytes). The directory demo reduces three files to two files and their required lines. Windows amd64 and macOS arm64 cross-builds pass locally; native macOS/Windows execution is delegated to CI/release smoke jobs. CI and automatic release workflows are ready; v0.1.0 publication is pending the first push and green CI. No website work has started because its repository has not been supplied.
+Local vet, race tests and both CLI demos pass. The 20,000-line demo reduces 408,866 bytes to the two trigger lines (12 bytes). The directory demo reduces three files to two files and their required lines. Windows amd64 and macOS arm64 cross-builds pass locally; native macOS/Windows execution is delegated to CI/release smoke jobs. CI passed on Linux and macOS. v0.1.0 published all five archives and passed native Linux/macOS/Windows smoke tests, but its post-publication verification step failed because gh release download requires a pattern for latest. Fixed that invocation and raised the recovery patch to 0.1.1 under the standards. There is no leftover draft; 0.1.0 is a complete public release. The user supplied photozeitgeist/selectivity.net, an existing Launch template, for the final website stage.
 
 ## Next
 
-Push the verified implementation to main; check CI and the automated v0.1.0 release, including every published asset at tag and latest plus a downloaded binary. Record release evidence and update this handoff. Website remains the final stage after a site repo is supplied.
+Verify the recovery release 0.1.1 and published downloads. Finish the supplied site using the existing Launch theme unchanged, then add the studio listing and note. Record release evidence and update this handoff.

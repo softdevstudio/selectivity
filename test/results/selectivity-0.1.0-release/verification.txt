@@ -1,0 +1,4 @@
+Source commit: 6d7221dda00e3bbd0e7c7b326568b6f9e7a84f1d
+CI run: https://github.com/softdevstudio/selectivity/actions/runs/40071404944
+Linux and macOS CI passed.
+Published v0.1.0 is complete, not a draft. Tag and latest downloads matched all five SHA256SUMS entries; downloaded Linux amd64 binary ran as Selectivity 0.1.0. Release verification workflow failed only because latest download omitted --pattern. Recovery patch 0.1.1 fixes it.

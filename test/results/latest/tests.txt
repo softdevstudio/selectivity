@@ -1,6 +1,6 @@
 ?   	github.com/softdevstudio/selectivity	[no test files]
 === RUN   TestCLIFlags
-Selectivity 0.1.0
+Selectivity 0.1.1
 Usage: selectivity --input PATH --out NEW_DIR [options] -- PROGRAM [ARGS containing {input}]
 Predicate exits: 0 interesting, 1 uninteresting, others unresolved. No shell is implied.
   -input string
@@ -53,4 +53,4 @@ Predicate exits: 0 interesting, 1 uninteresting, others unresolved. No shell is 
 exec: "definitely-not-a-selectivity-program": executable file not found in $PATH
 --- PASS: TestCLIFlags (0.00s)
 PASS
-ok  	github.com/softdevstudio/selectivity/cmd/selectivity	1.015s
+ok  	github.com/softdevstudio/selectivity/cmd/selectivity	1.009s

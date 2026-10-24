@@ -137,7 +137,7 @@ jobs:
           VERSION: ${{ needs.check.outputs.version }}
         run: |
           gh release download "v$VERSION" --dir verify-tag
-          gh release download --dir verify-latest
+          gh release download --pattern '*' --dir verify-latest
           (cd verify-tag && sha256sum -c SHA256SUMS)
           (cd verify-latest && sha256sum -c SHA256SUMS)
           cmp verify-tag/SHA256SUMS verify-latest/SHA256SUMS
