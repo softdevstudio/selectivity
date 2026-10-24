@@ -58,4 +58,6 @@ The demo builds the binary, generates a 20,000-line file containing two necessar
 
 ## Development
 
+The separate website repository is [photozeitgeist/selectivity.net](https://github.com/photozeitgeist/selectivity.net), including recorded browser playback of published-binary reductions.
+
 Read [CLAUDE.md](CLAUDE.md) for the agreed plan and current handoff. Apache 2.0; see LICENSE and NOTICE. The website is a separate final stage.

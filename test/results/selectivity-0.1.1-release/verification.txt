@@ -1,0 +1,5 @@
+Selectivity v0.1.1
+Source commit: 4db22d9b4ff0833fa7ca20e65a1d6dd4d4ee05a3
+CI: https://github.com/softdevstudio/selectivity/actions/runs/40071687732
+Release: https://github.com/softdevstudio/selectivity/actions/runs/40071753279
+CI on Linux and macOS passed. Native archived-binary smoke tests passed on Linux amd64, macOS arm64 and Windows amd64. Five archives at the tag and latest matched SHA256SUMS, and both checksum manifests matched. A separately downloaded Linux amd64 binary ran as Selectivity 0.1.1 and reproduced both fixture reductions. One run per fixture; repeats=1, timeout=5s; Linux x86_64 container. Timing is not a benchmark.

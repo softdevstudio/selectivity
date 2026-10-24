@@ -1,0 +1,22 @@
+{
+  "status": "complete",
+  "original_bytes": 408866,
+  "reduced_bytes": 12,
+  "original_files": 1,
+  "reduced_files": 1,
+  "predicate_executions": 80,
+  "candidate_checks": 80,
+  "unresolved_checks": 0,
+  "locally_minimal": true,
+  "scope": "lines",
+  "duration_ms": 362,
+  "command": [
+    "/usr/bin/sh",
+    "-c",
+    "grep -qx alpha \"$1\" \u0026\u0026 grep -qx omega \"$1\"",
+    "check",
+    "{input}"
+  ],
+  "repeats": 1,
+  "timeout": "5s"
+}

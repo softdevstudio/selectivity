@@ -1,0 +1,9 @@
+Hugo 0.147.9 build: passed.
+Six unique post images; 660 internal URLs/assets passed; one H1 per substantive page.
+Launch theme matched original blob hashes and was omitted from the site commit changes.
+Independent content and playback review: no blocking issues.
+Node playback state checks: loading, step, play, pause, reset, dataset switch and both final recorded results passed.
+SVGs rasterized and visually inspected; name graphic font reduced to fit.
+Full browser rendering unavailable locally; public domain currently parked.
+Site commit: e16a3b6f60622f16e5630c7a1d1396d3b013a632
+Studio commit: e41015bc7a3866a4d1d8dc8254de8966ccc65752
