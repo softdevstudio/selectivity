@@ -1,0 +1,1 @@
+2469 -> 59 bytes; 201 predicate executions. Report: /tmp/selectivity-use-examples-20261024/csv/report.html

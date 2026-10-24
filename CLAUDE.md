@@ -37,6 +37,8 @@ The website at photozeitgeist/selectivity.net uses the supplied Launch theme unc
 
 Selectivity was added as the twenty-ninth SoftDevStudio.com project with its own note and updated plan/feed coverage. Studio commit: e41015bc7a3866a4d1d8dc8254de8966ccc65752. The user connected selectivity.net. Public HTTPS verification passed: homepage and all seven images loaded, both recorded demo runs completed at 12 bytes (80 and 18 checks), and Quick Start and Download loaded. All five archive links plus SHA256SUMS match release asset names. Fixed Hugo smart punctuation altering the inline --version command on the download page.
 
+2026-10-24 follow-up: Added three generated use cases and real 0.1.1 evidence under examples/use-cases and the existing release evidence folder: CSV calculation disagreement, JSON Lines precision loss, and a budget-limited checkpoint followed by a fresh run. CSV reduced 2469 to 59 bytes (201 executions, 23 unresolved); JSONL 4144 to 41 bytes (36 executions); limited Python fixture 3866 to 1014 bytes (12 executions), then 1014 to 6 bytes (36 executions). Each candidate used three observations and a five-second timeout. Independent review checked audit counts, predicate behavior, exact results and all post claims, with no blocking findings. Strengthened runner assertions and reran the example bundle successfully. Engine version remains 0.1.1.
+
 ## Next
 
 Public site and recorded playback are live and verified. Further engine features await the user's choice. Read this file first in either Claude or Codex; work on main and keep the existing template unchanged.

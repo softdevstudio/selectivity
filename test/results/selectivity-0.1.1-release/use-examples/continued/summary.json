@@ -1,0 +1,20 @@
+{
+  "status": "complete",
+  "original_bytes": 1014,
+  "reduced_bytes": 6,
+  "original_files": 1,
+  "reduced_files": 1,
+  "predicate_executions": 36,
+  "candidate_checks": 12,
+  "unresolved_checks": 0,
+  "locally_minimal": true,
+  "scope": "lines",
+  "duration_ms": 774,
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/scratch/a1e6bf690e2f/selectivity/examples/use-cases/syntax_predicate.py",
+    "{input}"
+  ],
+  "repeats": 3,
+  "timeout": "5s"
+}

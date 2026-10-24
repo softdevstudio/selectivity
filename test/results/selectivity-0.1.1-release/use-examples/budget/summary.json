@@ -1,0 +1,21 @@
+{
+  "status": "incomplete",
+  "error": "predicate execution budget exhausted",
+  "original_bytes": 3866,
+  "reduced_bytes": 1014,
+  "original_files": 1,
+  "reduced_files": 1,
+  "predicate_executions": 12,
+  "candidate_checks": 5,
+  "unresolved_checks": 1,
+  "locally_minimal": false,
+  "scope": "lines",
+  "duration_ms": 273,
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "/workspace/scratch/a1e6bf690e2f/selectivity/examples/use-cases/syntax_predicate.py",
+    "{input}"
+  ],
+  "repeats": 3,
+  "timeout": "5s"
+}

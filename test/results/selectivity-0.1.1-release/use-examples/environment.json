@@ -1,0 +1,14 @@
+{
+  "binary": "Selectivity 0.1.1",
+  "binary_sha256": "843199b87f4eea41f99e1b0f544280e9409167782c21b1751d2f09383cdb6b1a",
+  "machine": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "repeats": 3,
+  "sample_count": 1,
+  "timeout": "5s",
+  "original_sha256": {
+    "orders.csv": "d69b909ef9f1e59d805cf8db1cf0ce63567943e71a512a5a84c048a3a3c4b1b0",
+    "records.jsonl": "422164e310750c109da040c1c19e8d194464ac80f9e49fa7b8ce7659e4129d9e",
+    "program.py": "d380d8c9a7729447715ad81944457895a05ddca7ab87007a6df8b7faf26344ff"
+  }
+}
