@@ -23,7 +23,7 @@ func run(args []string) int {
 	repeats := fs.Int("repeats", 3, "consecutive matching observations required")
 	budget := fs.Int("max-tests", 10000, "maximum predicate executions for the run")
 	lines := fs.Bool("lines-in-files", false, "also reduce the text inside remaining directory files")
-	units := fs.String("units", "tokens", "finest unit: lines, tokens or chars")
+	units := fs.String("units", "lines", "finest unit: lines, tokens or chars")
 	jobs := fs.Int("jobs", 1, "candidates checked at once (1 to 64); the predicate must be safe to run in parallel")
 	version := fs.Bool("version", false, "print version")
 	fs.Usage = func() {
@@ -42,6 +42,11 @@ func run(args []string) int {
 	}
 	if *input == "" || *output == "" || len(fs.Args()) == 0 {
 		fs.Usage()
+		return 2
+	}
+	// The library treats empty values as defaults; on the command line they are mistakes.
+	if *units == "" || *jobs < 1 {
+		fmt.Fprintln(os.Stderr, "selectivity: --units must be lines, tokens or chars and --jobs from 1 to 64")
 		return 2
 	}
 	command := append([]string(nil), fs.Args()...)

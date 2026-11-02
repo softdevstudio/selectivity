@@ -112,6 +112,9 @@ func Run(ctx context.Context, source, output string, opts Options) (s Summary, r
 		s.Scope = "files"
 		if opts.LinesInFiles {
 			s.Scope = "files and per-file " + scope
+		} else {
+			// Only whole files are removed; the units setting is not used.
+			s.Units = "files"
 		}
 	}
 	e := engine{ctx: ctx, opts: opts}

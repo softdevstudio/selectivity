@@ -76,6 +76,15 @@ func TestOracleHelper(t *testing.T) {
 			os.Exit(125)
 		}
 		os.Exit(1)
+	case "allmarks":
+		b, _ := os.ReadFile(p)
+		for i := 1; i <= 8; i++ {
+			if !strings.Contains(string(b), fmt.Sprintf("m%d\n", i)) {
+				time.Sleep(10 * time.Second)
+				os.Exit(1)
+			}
+		}
+		os.Exit(0)
 	case "slowpair":
 		time.Sleep(150 * time.Millisecond)
 		b, _ := os.ReadFile(p)

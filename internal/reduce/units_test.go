@@ -305,15 +305,51 @@ func TestJobsRespectBudgetAndRunInParallel(t *testing.T) {
 }
 
 func TestJobsCancellation(t *testing.T) {
-	src, out := setup(t, "a\nb\nc\nd\nBUG\n")
-	o := opts(t, "timeout")
+	// The full input is judged at once, so the baseline passes quickly; every
+	// candidate drops a needed line and its check hangs. With four jobs the
+	// first group runs in parallel when the deadline cancels the run.
+	src, out := setup(t, "m1\nm2\nm3\nm4\nm5\nm6\nm7\nm8\n")
+	o := opts(t, "allmarks")
+	o.Units = "lines"
 	o.Jobs = 4
 	o.Timeout = 20 * time.Second
-	ctx, cancel := context.WithTimeout(context.Background(), 300*time.Millisecond)
+	ctx, cancel := context.WithTimeout(context.Background(), 700*time.Millisecond)
 	defer cancel()
 	start := time.Now()
-	_, e := Run(ctx, src, out, o)
-	if e == nil || time.Since(start) > 10*time.Second {
-		t.Fatal("cancellation not honoured", e, time.Since(start))
+	s, e := Run(ctx, src, out, o)
+	if e == nil || time.Since(start) > 8*time.Second || s.Status != "incomplete" {
+		t.Fatal("cancellation not honoured", e, time.Since(start), s.Status)
+	}
+	var inGroup int
+	for i, a := range attempts(t, out) {
+		if a.Number != i+1 {
+			t.Fatal("attempts out of order")
+		}
+		if a.Stage != "baseline" {
+			inGroup++
+			if a.Outcome != "incomplete" || a.Accepted {
+				t.Fatalf("canceled check recorded as %+v", a)
+			}
+		}
+	}
+	if inGroup < 2 {
+		t.Fatal("no parallel group was running at cancellation", inGroup)
+	}
+	if got := reduced(t, out); got != "m1\nm2\nm3\nm4\nm5\nm6\nm7\nm8\n" {
+		t.Fatalf("checkpoint changed by canceled checks: %q", got)
+	}
+}
+
+func TestDirectoryWithoutTextPassReportsFiles(t *testing.T) {
+	root := t.TempDir()
+	src := filepath.Join(root, "in")
+	os.MkdirAll(filepath.Join(src, "nested"), 0700)
+	os.WriteFile(filepath.Join(src, "a.txt"), []byte("alpha\n"), 0600)
+	os.WriteFile(filepath.Join(src, "nested", "b.txt"), []byte("omega\n"), 0600)
+	o := opts(t, "tree")
+	o.Units = "tokens"
+	s, e := Run(context.Background(), src, filepath.Join(root, "run"), o)
+	if e != nil || s.Units != "files" || s.Scope != "files" {
+		t.Fatal(s, e)
 	}
 }

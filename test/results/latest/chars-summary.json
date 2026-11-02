@@ -9,7 +9,7 @@
   "unresolved_checks": 0,
   "locally_minimal": true,
   "scope": "lines, tokens and characters",
-  "duration_ms": 91,
+  "duration_ms": 101,
   "command": [
     "/usr/bin/sh",
     "-c",

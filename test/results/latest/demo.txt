@@ -1,4 +1,4 @@
-408866 -> 12 bytes; 86 predicate executions. Report: demo-output/lines/report.html
-39 -> 12 bytes; 26 predicate executions. Report: demo-output/tree/report.html
+408866 -> 12 bytes; 80 predicate executions. Report: demo-output/lines/report.html
+39 -> 12 bytes; 18 predicate executions. Report: demo-output/tree/report.html
 21311 -> 5 bytes; 58 predicate executions. Report: demo-output/chars/report.html
 All three demonstrations passed.
