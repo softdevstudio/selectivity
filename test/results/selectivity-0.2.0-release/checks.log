@@ -1,0 +1,14 @@
+Release: v0.2.0 "Selectivity v0.2.0" from 670661c (670661c7f8d12f9341e851dbd13bd72118d90892), published 2026-11-02T02:02:33Z, not a draft
+Gates on the exact commit: CI 41375306615 success (Linux and macOS recorder, Windows vet, tests and race tests); Release 41375485636 success (five archives built, native smoke on Linux amd64, macOS arm64 and Windows amd64 including a chars and --jobs 2 reduction, publish, tag and latest download check)
+PASS every asset downloaded from the v0.2.0 tag and from releases/latest/download is byte-identical, and all five archives match SHA256SUMS
+PASS downloaded Linux amd64 archive: selectivity --version prints Selectivity 0.2.0
+Downloaded binary, Linux amd64 cloud container (2 cores), one observation per candidate:
+  lines (default units): 20000-line generated file, 408866 -> 12 bytes in 80 predicate executions, same as 0.1.1
+  --units tokens: one 21311-byte line, 21311 -> 16 bytes ("value=zzERR42zz ") in 21 executions
+  --units chars --jobs 4: same line, 21311 -> 5 bytes ("ERR42") in 58 executions
+--jobs timing, downloaded binary: 64 lines with the two needed lines at opposite ends, predicate sleeps 0.2 s then greps, three runs each; identical 12-byte result, locally minimal, every time:
+  --jobs 1: 7.00 s, 6.99 s, 6.97 s (34 executions)
+  --jobs 4: 3.74 s, 3.78 s, 3.72 s (49 executions)
+  --jobs 8: 3.74 s, 3.73 s, 3.73 s (49 executions)
+  A generated fixture with a sleeping predicate on one machine, not a benchmark of real bugs. Summaries for run 1 of each are in this folder.
+Review: independent review in two rounds; round 1 no blockers, five should-fix items fixed (including keeping lines as the default); round 2 found nothing to fix
