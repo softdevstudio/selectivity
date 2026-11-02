@@ -1,5 +1,31 @@
 # Selectivity
 
+## Where the next session starts
+
+Selectivity 0.2 Phase A (softdev-plan item 34 in photozeitgeist/jollyroger.biz, approved by YK 2026-11-02, Phase A plus upkeep) is in progress; see the next section. Phase B (JSON/JSONL and CSV-aware units) is not approved.
+
+## In progress: Selectivity 0.2 Phase A
+
+What and why: after line reduction the result is often one long line still full of removable text, which finer units fix; predicate runs dominate wall time, so checking several candidates at once cuts it; the release builds on Go 1.25, which is out of support, and Windows archives ship without Windows CI.
+
+Design decisions:
+- `--units=lines|tokens|chars`, default `tokens`. A token is a run of non-whitespace bytes plus the whitespace after it (spaces, tabs and newlines; leading whitespace is its own token), so a word and its separator go together and `TRIGGER\n` stays one unit. A char is one UTF-8 code point (an invalid byte is its own unit). After the line pass, the token pass and then, with `chars`, the character pass run on what is left; the levels repeat until a full round changes nothing, so the result is 1-minimal at every level used. `--units=lines` runs exactly as 0.1 did. In directory mode the finer levels apply with `--lines-in-files`, per remaining file.
+- `--jobs N` (1 to 64, default 1): ddmin's candidates for one step are checked in windows of N, each in its own temp copy; after a window finishes, the earliest interesting candidate in candidate order is accepted, which is the one a sequential run would pick, so a deterministic predicate gives the same result as `--jobs 1`. Every check is logged in candidate order. Checks after the accepted one in a window are logged with `"speculative": true` (and an interesting one also `"superseded": true`); they never change the result, and their unresolved outcomes do not count against the locally-minimal claim. The budget is reserved before each execution, so it is never exceeded. Predicates must be safe to run concurrently; the README says so.
+- Summary JSON gains `units` and `jobs`; the HTML report shows them.
+- Upkeep: go.mod `go 1.26`, README "Go 1.26 or newer", CI and release on `go-version: stable`, a Windows CI job (vet, tests, race tests).
+- Version 0.2.0.
+
+Steps (done / remaining):
+1. [ ] Upkeep: Go 1.26, stable Go in workflows, Windows CI job.
+2. [ ] Token and character units with the fixed-point loop, with tests (token and char splitting, UTF-8 and invalid bytes, levels reach a fixed point, lines mode unchanged from 0.1, directory mode with --lines-in-files, budget during a fine pass, report fields).
+3. [ ] `--jobs`, with tests (same result as --jobs 1 on deterministic predicates, earliest-interesting choice, speculative and superseded marks, budget never exceeded, cancellation, unresolved speculative checks don't block minimality, attempt numbering in order).
+4. [ ] README, docs/algorithm.md, docs/predicates.md, demo and release smoke updated.
+5. [ ] Independent review (at most two rounds), fixes, fresh test/results.
+6. [ ] Selectivity 0.2.0 released by the workflow; assets checked at tag and latest; a downloaded binary run.
+7. [ ] selectivity.net post with its SVG and page updates; softdevstudio.com note; softdev-plan.md item 34 updated.
+
+Local note: this cloud session has Go 1.24 only (Go downloads are blocked); local tests run with a scratch go.mod; CI is the real check.
+
 ## Project facts
 
 Selectivity reduces an input while a user-supplied command confirms that the behavior of interest survives.
