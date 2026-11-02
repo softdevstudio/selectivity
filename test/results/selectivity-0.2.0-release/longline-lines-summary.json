@@ -1,0 +1,24 @@
+{
+  "status": "complete",
+  "original_bytes": 21311,
+  "reduced_bytes": 21311,
+  "original_files": 1,
+  "reduced_files": 1,
+  "predicate_executions": 3,
+  "candidate_checks": 3,
+  "unresolved_checks": 0,
+  "locally_minimal": true,
+  "scope": "lines",
+  "duration_ms": 8,
+  "command": [
+    "/usr/bin/sh",
+    "-c",
+    "grep -q ERR42 \"$1\"",
+    "check",
+    "{input}"
+  ],
+  "repeats": 1,
+  "timeout": "5s",
+  "units": "lines",
+  "jobs": 1
+}
