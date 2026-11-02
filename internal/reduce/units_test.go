@@ -278,18 +278,29 @@ func TestJobsRespectBudgetAndRunInParallel(t *testing.T) {
 	if e == nil || s.Tests > 9 {
 		t.Fatalf("budget exceeded or ignored: %+v %v", s, e)
 	}
-	// Parallel checks overlap: 16 lines with 8 jobs take far less than the
-	// sequential sum of 150 ms per check.
-	src, out = setup(t, lines)
-	o.MaxTests = 1000
-	start := time.Now()
-	s, e = Run(context.Background(), src, out, o)
-	parallel := time.Since(start)
-	if e != nil || reduced(t, out) != "BUG\n" {
-		t.Fatal(s, e)
+	// Parallel checks overlap. Compare a measured one-at-a-time run with an
+	// eight-job run on the same input, rather than a fixed time, because
+	// process start-up costs differ a lot between systems. Two needed lines
+	// at opposite ends make most candidates fail before one succeeds, which
+	// is where checking several at once pays.
+	pair := "alpha\n" + strings.Repeat("noise\n", 30) + "omega\n"
+	timed := func(jobs int) (time.Duration, Summary) {
+		src, out := setup(t, pair)
+		p := opts(t, "slowpair")
+		p.Units = "lines"
+		p.Jobs = jobs
+		start := time.Now()
+		s, e := Run(context.Background(), src, out, p)
+		if e != nil || reduced(t, out) != "alpha\nomega\n" {
+			t.Fatal(s, e)
+		}
+		return time.Since(start), s
 	}
-	if limit := time.Duration(s.Tests) * 150 * time.Millisecond * 3 / 4; parallel > limit {
-		t.Fatalf("no overlap: %d checks in %v", s.Tests, parallel)
+	sequential, one := timed(1)
+	parallel, eight := timed(8)
+	t.Logf("%d checks one at a time: %v; %d checks with 8 jobs: %v", one.Tests, sequential, eight.Tests, parallel)
+	if parallel*10 > sequential*7 {
+		t.Fatalf("no overlap: %d checks one at a time took %v, %d checks with 8 jobs took %v", one.Tests, sequential, eight.Tests, parallel)
 	}
 }
 

@@ -76,6 +76,13 @@ func TestOracleHelper(t *testing.T) {
 			os.Exit(125)
 		}
 		os.Exit(1)
+	case "slowpair":
+		time.Sleep(150 * time.Millisecond)
+		b, _ := os.ReadFile(p)
+		if strings.Contains(string(b), "alpha\n") && strings.Contains(string(b), "omega\n") {
+			os.Exit(0)
+		}
+		os.Exit(1)
 	case "slowbug":
 		time.Sleep(150 * time.Millisecond)
 		b, _ := os.ReadFile(p)
