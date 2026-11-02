@@ -31,5 +31,12 @@ jobs:
         with:
           go-version: stable
       - run: go vet ./...
-      - run: go test -count=1 ./...
-      - run: go test -race -count=1 ./...
+      # Job logs can't be read from Claude sessions, so failing lines become annotations.
+      - name: Tests
+        shell: bash
+        run: |
+          go test -count=1 -v ./... > tests.log 2>&1 || { grep -E -- '--- FAIL|^FAIL|panic:|_test\.go:[0-9]+' tests.log | head -40 | while IFS= read -r l; do echo "::error::$l"; done; exit 1; }
+      - name: Race tests
+        shell: bash
+        run: |
+          go test -race -count=1 ./... > race.log 2>&1 || { grep -E -- '--- FAIL|^FAIL|panic:|_test\.go:[0-9]+|DATA RACE' race.log | head -40 | while IFS= read -r l; do echo "::error::$l"; done; exit 1; }
