@@ -1,6 +1,6 @@
 ?   	github.com/softdevstudio/selectivity	[no test files]
 === RUN   TestCLIFlags
-Selectivity 0.1.1
+Selectivity 0.2.0
 Usage: selectivity --input PATH --out NEW_DIR [options] -- PROGRAM [ARGS containing {input}]
 Predicate exits: 0 interesting, 1 uninteresting, others unresolved. No shell is implied.
   -input string
@@ -63,19 +63,22 @@ Predicate exits: 0 interesting, 1 uninteresting, others unresolved. No shell is 
   -version
     	print version
 exec: "definitely-not-a-selectivity-program": executable file not found in $PATH
-selectivity: --units must be lines, tokens or chars and --jobs from 1 to 64
-selectivity: --units must be lines, tokens or chars and --jobs from 1 to 64
 --- PASS: TestCLIFlags (0.00s)
+=== RUN   TestCLIRefusesEmptyUnitsAndZeroJobs
+selectivity: --units must be lines, tokens or chars and --jobs from 1 to 64
+selectivity: --units must be lines, tokens or chars and --jobs from 1 to 64
+selectivity: --units must be lines, tokens or chars and --jobs from 1 to 64
+--- PASS: TestCLIRefusesEmptyUnitsAndZeroJobs (0.00s)
 PASS
-ok  	github.com/softdevstudio/selectivity/cmd/selectivity	1.011s
+ok  	github.com/softdevstudio/selectivity/cmd/selectivity	1.017s
 === RUN   TestCopiedMode
 --- PASS: TestCopiedMode (0.00s)
 === RUN   TestOracleHelper
 --- PASS: TestOracleHelper (0.00s)
 === RUN   TestLinesAndEvidence
---- PASS: TestLinesAndEvidence (0.13s)
+--- PASS: TestLinesAndEvidence (0.14s)
 === RUN   TestMutationDoesNotLeak
---- PASS: TestMutationDoesNotLeak (0.10s)
+--- PASS: TestMutationDoesNotLeak (0.12s)
 === RUN   TestDirectoryAndLineReduction
 --- PASS: TestDirectoryAndLineReduction (0.16s)
 === RUN   TestRejectBaseline
@@ -94,40 +97,40 @@ ok  	github.com/softdevstudio/selectivity/cmd/selectivity	1.011s
 === RUN   TestEmptyAndNoFinalNewline/size10
 --- PASS: TestEmptyAndNoFinalNewline (0.09s)
     --- PASS: TestEmptyAndNoFinalNewline/size0 (0.02s)
-    --- PASS: TestEmptyAndNoFinalNewline/size7 (0.03s)
+    --- PASS: TestEmptyAndNoFinalNewline/size7 (0.04s)
     --- PASS: TestEmptyAndNoFinalNewline/size10 (0.03s)
 === RUN   TestPathSafety
 --- PASS: TestPathSafety (0.00s)
 === RUN   TestLinesPreserveBytes
 --- PASS: TestLinesPreserveBytes (0.00s)
 === RUN   TestCanceledExecutionIsRecorded
---- PASS: TestCanceledExecutionIsRecorded (0.11s)
+--- PASS: TestCanceledExecutionIsRecorded (0.10s)
 === RUN   TestHashIncludesEmptyDirectories
 --- PASS: TestHashIncludesEmptyDirectories (0.00s)
 === RUN   TestTokensAndCharsSplit
 --- PASS: TestTokensAndCharsSplit (0.00s)
 === RUN   TestTokenPassShrinksInsideALine
---- PASS: TestTokenPassShrinksInsideALine (0.12s)
+--- PASS: TestTokenPassShrinksInsideALine (0.14s)
 === RUN   TestCharPassAndFixedPoint
---- PASS: TestCharPassAndFixedPoint (0.25s)
+--- PASS: TestCharPassAndFixedPoint (0.29s)
 === RUN   TestTokensJoinWordsAcrossLines
---- PASS: TestTokensJoinWordsAcrossLines (0.15s)
+--- PASS: TestTokensJoinWordsAcrossLines (0.16s)
 === RUN   TestDirectoryTokensInFiles
---- PASS: TestDirectoryTokensInFiles (0.23s)
+--- PASS: TestDirectoryTokensInFiles (0.24s)
 === RUN   TestBudgetDuringTokenPassKeepsVerifiedCheckpoint
 --- PASS: TestBudgetDuringTokenPassKeepsVerifiedCheckpoint (0.05s)
 === RUN   TestUnitsAndJobsValidation
 --- PASS: TestUnitsAndJobsValidation (0.00s)
 === RUN   TestJobsGiveTheSameResult
---- PASS: TestJobsGiveTheSameResult (0.69s)
+--- PASS: TestJobsGiveTheSameResult (0.72s)
 === RUN   TestJobsMarkSpeculativeAndKeepMinimality
 --- PASS: TestJobsMarkSpeculativeAndKeepMinimality (0.10s)
 === RUN   TestJobsRespectBudgetAndRunInParallel
-    units_test.go:301: 28 checks one at a time: 4.539273079s; 40 checks with 8 jobs: 2.503802978s
---- PASS: TestJobsRespectBudgetAndRunInParallel (7.86s)
+    units_test.go:301: 28 checks one at a time: 4.551229899s; 40 checks with 8 jobs: 2.508001379s
+--- PASS: TestJobsRespectBudgetAndRunInParallel (7.88s)
 === RUN   TestJobsCancellation
 --- PASS: TestJobsCancellation (0.71s)
 === RUN   TestDirectoryWithoutTextPassReportsFiles
---- PASS: TestDirectoryWithoutTextPassReportsFiles (0.05s)
+--- PASS: TestDirectoryWithoutTextPassReportsFiles (0.04s)
 PASS
-ok  	github.com/softdevstudio/selectivity/internal/reduce	11.897s
+ok  	github.com/softdevstudio/selectivity/internal/reduce	12.071s
