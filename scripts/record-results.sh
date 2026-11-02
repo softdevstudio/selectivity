@@ -13,4 +13,5 @@ go test -race -count=1 -v ./... > test/results/latest/tests.txt 2>&1
 sh scripts/demo.sh > test/results/latest/demo.txt 2>&1
 cp demo-output/lines/summary.json test/results/latest/lines-summary.json
 cp demo-output/tree/summary.json test/results/latest/tree-summary.json
+cp demo-output/chars/summary.json test/results/latest/chars-summary.json
 printf 'All checks passed.\n'

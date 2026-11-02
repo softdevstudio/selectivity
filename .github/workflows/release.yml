@@ -58,7 +58,7 @@ jobs:
           ref: ${{ needs.check.outputs.sha }}
       - uses: actions/setup-go@v5
         with:
-          go-version-file: go.mod
+          go-version: stable
       - name: Build archive
         env:
           GOOS: ${{ matrix.goos }}
@@ -110,6 +110,9 @@ jobs:
           ./selectivity --input source.txt --out result --repeats 1 -- sh -c 'grep -qx TRIGGER "$1"' check '{input}'
           printf 'TRIGGER\n' > expected.txt
           cmp expected.txt result/reduced
+          printf 'first line\naa zzXYzz bb\nlast\n' > long.txt
+          ./selectivity --input long.txt --out chars --units chars --jobs 2 --repeats 1 -- sh -c 'grep -q XY "$1"' check '{input}'
+          printf 'XY' | cmp - chars/reduced
   publish:
     needs: [check, build, smoke]
     runs-on: ubuntu-latest

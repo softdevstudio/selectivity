@@ -9,6 +9,7 @@ import (
 	"os"
 	"path/filepath"
 	"sort"
+	"unicode/utf8"
 )
 
 type File struct {
@@ -140,4 +141,46 @@ func Lines(b []byte) [][]byte {
 		a = a[:len(a)-1]
 	}
 	return a
+}
+
+func space(c byte) bool {
+	return c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == '\v' || c == '\f'
+}
+
+// Tokens splits b into runs of non-whitespace bytes, each with the whitespace
+// that follows it. Leading whitespace is its own token. Joining the tokens
+// gives b back.
+func Tokens(b []byte) [][]byte {
+	var out [][]byte
+	i := 0
+	for i < len(b) && space(b[i]) {
+		i++
+	}
+	if i > 0 {
+		out = append(out, b[:i])
+	}
+	for i < len(b) {
+		j := i
+		for j < len(b) && !space(b[j]) {
+			j++
+		}
+		for j < len(b) && space(b[j]) {
+			j++
+		}
+		out = append(out, b[i:j])
+		i = j
+	}
+	return out
+}
+
+// Chars splits b into UTF-8 code points; a byte that is not valid UTF-8 is a
+// unit of its own. Joining the units gives b back.
+func Chars(b []byte) [][]byte {
+	var out [][]byte
+	for i := 0; i < len(b); {
+		_, n := utf8.DecodeRune(b[i:])
+		out = append(out, b[i:i+n])
+		i += n
+	}
+	return out
 }

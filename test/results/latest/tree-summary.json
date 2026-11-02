@@ -4,12 +4,12 @@
   "reduced_bytes": 12,
   "original_files": 3,
   "reduced_files": 2,
-  "predicate_executions": 18,
-  "candidate_checks": 18,
+  "predicate_executions": 26,
+  "candidate_checks": 26,
   "unresolved_checks": 0,
   "locally_minimal": true,
-  "scope": "files and per-file lines",
-  "duration_ms": 47,
+  "scope": "files and per-file lines and tokens",
+  "duration_ms": 70,
   "command": [
     "/usr/bin/sh",
     "-c",
@@ -18,5 +18,7 @@
     "{input}"
   ],
   "repeats": 1,
-  "timeout": "5s"
+  "timeout": "5s",
+  "units": "tokens",
+  "jobs": 1
 }

@@ -22,7 +22,9 @@ func run(args []string) int {
 	timeout := fs.Duration("timeout", 5*time.Second, "timeout per predicate execution")
 	repeats := fs.Int("repeats", 3, "consecutive matching observations required")
 	budget := fs.Int("max-tests", 10000, "maximum predicate executions for the run")
-	lines := fs.Bool("lines-in-files", false, "also reduce lines inside remaining directory files")
+	lines := fs.Bool("lines-in-files", false, "also reduce the text inside remaining directory files")
+	units := fs.String("units", "tokens", "finest unit: lines, tokens or chars")
+	jobs := fs.Int("jobs", 1, "candidates checked at once (1 to 64); the predicate must be safe to run in parallel")
 	version := fs.Bool("version", false, "print version")
 	fs.Usage = func() {
 		fmt.Fprintln(fs.Output(), "Usage: selectivity --input PATH --out NEW_DIR [options] -- PROGRAM [ARGS containing {input}]\nPredicate exits: 0 interesting, 1 uninteresting, others unresolved. No shell is implied.")
@@ -56,7 +58,7 @@ func run(args []string) int {
 	command[0] = exe
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
 	defer stop()
-	summary, err := reduce.Run(ctx, *input, *output, reduce.Options{Command: command, Timeout: *timeout, Repeats: *repeats, MaxTests: *budget, LinesInFiles: *lines})
+	summary, err := reduce.Run(ctx, *input, *output, reduce.Options{Command: command, Timeout: *timeout, Repeats: *repeats, MaxTests: *budget, LinesInFiles: *lines, Units: *units, Jobs: *jobs})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "selectivity:", err)
 		return 2

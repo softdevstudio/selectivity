@@ -55,6 +55,34 @@ func TestOracleHelper(t *testing.T) {
 			os.Exit(0)
 		}
 		os.Exit(1)
+	case "substr":
+		b, _ := os.ReadFile(p)
+		if strings.Contains(string(b), "XY") {
+			os.Exit(0)
+		}
+		os.Exit(1)
+	case "words":
+		b, _ := os.ReadFile(p)
+		if strings.Contains(string(b), "alpha") && strings.Contains(string(b), "omega") {
+			os.Exit(0)
+		}
+		os.Exit(1)
+	case "unres":
+		b, _ := os.ReadFile(p)
+		if strings.Contains(string(b), "BUG") {
+			os.Exit(0)
+		}
+		if strings.Contains(string(b), "junk") {
+			os.Exit(125)
+		}
+		os.Exit(1)
+	case "slowbug":
+		time.Sleep(150 * time.Millisecond)
+		b, _ := os.ReadFile(p)
+		if strings.Contains(string(b), "BUG") {
+			os.Exit(0)
+		}
+		os.Exit(1)
 	case "timeout":
 		time.Sleep(10 * time.Second)
 		os.Exit(0)

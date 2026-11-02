@@ -15,4 +15,7 @@ printf 'unneeded\n' > demo-output/source/junk.txt
 printf 'alpha\n' | cmp - demo-output/tree/reduced/a.txt
 printf 'omega\n' | cmp - demo-output/tree/reduced/nested/b.txt
 test ! -e demo-output/tree/reduced/junk.txt
-printf 'Both demonstrations passed.\n'
+awk 'BEGIN { for(i=1;i<=1500;i++) { if(i==977) printf "value=zzERR42zz "; else printf "field%d=%d ", i, i*7 } print "" }' > demo-output/longline.txt
+./bin/selectivity --input demo-output/longline.txt --out demo-output/chars --units chars --jobs 4 --repeats 1 -- sh -c 'grep -q ERR42 "$1"' check '{input}'
+printf 'ERR42' | cmp - demo-output/chars/reduced
+printf 'All three demonstrations passed.\n'

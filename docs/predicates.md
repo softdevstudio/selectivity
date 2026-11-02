@@ -11,3 +11,5 @@ selectivity --input broken.txt --out result -- sh -c 'grep -q "TRIGGER" "$1"' ch
 ```
 
 The default three observations must all return 0 for acceptance. Mixed outcomes are recorded as unstable; repeated unresolved outcomes remain unresolved. A predicate that always returns 0 will legitimately reduce a file to empty. Check that your predicate actually distinguishes good and bad inputs before an expensive run.
+
+With `--jobs` greater than 1, several copies of the predicate run at the same time, each with its own candidate path and working directory. A predicate is safe for that only if it keeps all its state inside those: no fixed temporary file names, no fixed ports or sockets, no shared database rows, no lock files outside the working directory. If in doubt, run with `--jobs 1`, which is the default.

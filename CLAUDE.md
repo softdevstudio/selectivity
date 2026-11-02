@@ -16,10 +16,10 @@ Design decisions:
 - Version 0.2.0.
 
 Steps (done / remaining):
-1. [ ] Upkeep: Go 1.26, stable Go in workflows, Windows CI job.
-2. [ ] Token and character units with the fixed-point loop, with tests (token and char splitting, UTF-8 and invalid bytes, levels reach a fixed point, lines mode unchanged from 0.1, directory mode with --lines-in-files, budget during a fine pass, report fields).
-3. [ ] `--jobs`, with tests (same result as --jobs 1 on deterministic predicates, earliest-interesting choice, speculative and superseded marks, budget never exceeded, cancellation, unresolved speculative checks don't block minimality, attempt numbering in order).
-4. [ ] README, docs/algorithm.md, docs/predicates.md, demo and release smoke updated.
+1. [x] Upkeep: Go 1.26, stable Go in workflows, Windows CI job.
+2. [x] Token and character units with the fixed-point loop, with tests (token and char splitting, UTF-8 and invalid bytes, levels reach a fixed point, lines mode unchanged from 0.1, directory mode with --lines-in-files, budget during a fine pass, report fields).
+3. [x] `--jobs`, with tests (same result as --jobs 1 on deterministic predicates, earliest-interesting choice, speculative and superseded marks, budget never exceeded, cancellation, unresolved speculative checks don't block minimality, attempt numbering in order).
+4. [x] README, docs/algorithm.md, docs/predicates.md, demo and release smoke updated.
 5. [ ] Independent review (at most two rounds), fixes, fresh test/results.
 6. [ ] Selectivity 0.2.0 released by the workflow; assets checked at tag and latest; a downloaded binary run.
 7. [ ] selectivity.net post with its SVG and page updates; softdevstudio.com note; softdev-plan.md item 34 updated.
