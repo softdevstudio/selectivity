@@ -2,9 +2,9 @@
 
 ## Where the next session starts
 
-Selectivity 0.2 Phase A (softdev-plan item 34 in photozeitgeist/jollyroger.biz, approved by YK 2026-11-02, Phase A plus upkeep) is in progress; see the next section. Phase B (JSON/JSONL and CSV-aware units) is not approved.
+Selectivity 0.2.0 is released and Phase A of softdev-plan item 34 (photozeitgeist/jollyroger.biz) is done; nothing is in progress. Phase B (JSON/JSONL and CSV-aware units) is not approved; ask YK first. The examples/use-cases figures quoted on the site are 0.1.1 evidence and stay labelled as such.
 
-## In progress: Selectivity 0.2 Phase A
+## Done: Selectivity 0.2 Phase A
 
 What and why: after line reduction the result is often one long line still full of removable text, which finer units fix; predicate runs dominate wall time, so checking several candidates at once cuts it; the release builds on Go 1.25, which is out of support, and Windows archives ship without Windows CI.
 
@@ -22,7 +22,7 @@ Steps (done / remaining):
 4. [x] README, docs/algorithm.md, docs/predicates.md, demo and release smoke updated.
 5. [x] Independent review, two rounds; round 2 found nothing to fix, its two nits fixed (the CLI option test uses a real input; these design bullets match the docs). Fresh test/results recorded locally (Go 1.24, scratch go.mod); CI green on Linux, macOS and Windows.
 6. [x] Selectivity 0.2.0 released by the workflow (commit 670661c, Release 41375485636 on the first attempt). All five archives identical at the tag and latest and matching SHA256SUMS. The downloaded Linux binary reproduced the 20000-line demo (80 runs), reduced a 21311-byte line to 16 bytes with tokens and to ERR42 with chars and --jobs 4; --jobs timing on a sleeping predicate: about 7.0 s at 1 job, 3.7 s at 4 or 8, same result. Evidence in test/results/selectivity-0.2.0-release.
-7. [ ] selectivity.net post with its SVG and page updates; softdevstudio.com note; softdev-plan.md item 34 updated.
+7. [x] selectivity.net post "Selectivity 0.2 Removes Words and Characters and Checks Candidates in Parallel" with selectivity-0-2-units-jobs.svg (rasterized and inspected), Quick Start, Reference, About and Download pages (site commit a1e53ac, deploy succeeded); softdevstudio.com note and listing (deploy succeeded); softdev-plan.md item 34 marked Phase A done.
 
 Review round 1 (2026-11-02, independent agent): no blockers; the parallel window was confirmed to accept what a sequential run would (fuzzed at jobs 1, 2, 5, 64), speculative exclusion sound, budget never exceeded, no races or leaks. Should-fix, all fixed: the overlap timing test was too tight for macOS and Windows (now compares a measured --jobs 1 run on an input where most candidates fail; it failed once on Windows CI before the fix); a tokens default could turn a run that completed under 0.1 into an exit-2 incomplete run (default back to lines, finer units opt-in, README explains the cost); "same result with any --jobs" now says "given enough budget" and explains speculative budget use; a directory run without --lines-in-files reported the unused units setting (now `files`); the cancellation test never ran a parallel group (rewritten). Nits fixed: the CLI refuses --jobs 0 and an empty --units; docs name every whitespace byte a token absorbs; README notes memory grows with --jobs and the changed scope strings. CI on Windows now reports failing test lines as annotations.
 
